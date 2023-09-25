@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import Layout from '../Layout'
 import Login from '../pages/Auth/Login'
+import Dashboard from '../pages/Dashboard'
 
 const publicRoutes = [
   {
@@ -8,8 +9,12 @@ const publicRoutes = [
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: '/login',
         element: <Login />
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />
       },
     ]
   },
