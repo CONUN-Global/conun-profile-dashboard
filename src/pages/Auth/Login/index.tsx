@@ -1,14 +1,14 @@
 const Login = () => {
   return (
     <div className='w-screen h-screen bg-[#F4F6FF] flex flex-col items-center pt-36 pb-36'>
-      <h1 className='font-poppins text-4xl font-extrabold leading-[60px] text-["292929"] mb-12'>
+      <h1 className='text-4xl font-extrabold leading-[60px] text-["292929"] mb-12'>
         CONUN profile
       </h1>
       <form className='flex flex-col items-center'>
         <div className='w-[650px] mb-[25px] flex flex-col gap-2.5'>
           <label
             htmlFor='email'
-            className='font-bold font-poppins text-xl leading-[30px] text-[#292929]'
+            className='font-bold text-xl leading-[30px] text-[#292929]'
           >
             Email
           </label>
@@ -24,7 +24,7 @@ const Login = () => {
         <div className='w-[650px] mb-[180px] flex flex-col gap-2.5'>
           <label
             htmlFor='password'
-            className='font-bold font-poppins text-xl leading-[30px] text-[#292929]'
+            className='font-bold text-xl leading-[30px] text-[#292929]'
           >
             Password
           </label>
@@ -37,7 +37,7 @@ const Login = () => {
           />
         </div>
 
-        <p className='font-poppins font-medium text-base text-[#ff0000] mb-[20px] h-[24px]'>
+        <p className='font-medium text-base text-[#ff0000] mb-[20px] h-[24px]'>
           Your email or password is incorrect. Please re-enter.
         </p>
         <button
