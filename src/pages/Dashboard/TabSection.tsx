@@ -12,6 +12,29 @@ interface TabData {
   handleLanguage: (lang: string) => void
 }
 
+const classes = {
+  tabContainer:
+    'w-[248px] h-full absolute top-0 left-0 flex flex-col items-center pt-[30px] shrink-0',
+  imgContainer:
+    'w-[55px] h-[55px] bg-[#0b8e00] rounded-full flex justify-center items-center relative',
+  nameText: 'font-medium text-4xl text-[#ffffff] leading-[54px]',
+  logoImg: 'absolute bottom-0 right-[-7px] cursor-pointer',
+  nameTitle: 'mt-[5px] text-base font-medium text-custom-black',
+  email: 'font-bold text-[#9d9d9d] text-xs leading-[18px] mt-[7px] mb-[31px]',
+  bottomDiv: 'flex flex-col w-full gap-0',
+  tab: 'flex relative px-[19px] py-[23px] cursor-pointer gap-[15px] items-center',
+  selectedIcon: 'w-[4px] h-[13px] shrink-0 bg-custom-blue absolute left-0',
+  childTab: 'flex items-center gap-[3px] justify-center',
+  childTxt: 'py-[12px] pl-[58px] text-sm cursor-pointer font-semibold',
+  bottomContainer:
+    'absolute bottom-0 left-0 h-[134px] w-full flex flex-col items-center',
+  langDiv: 'flex px-[60px] gap-[8px] mb-[27px]',
+  lang: 'flex items-center justify-center cursor-pointer py-4 font-bold  rounded-[10px] w-[60px] h-[34px]',
+  logoutDiv:
+    'flex w-full pl-[40px] pr-[30px] gap-[90px] pt-[23px] items-center justify-center border-[#dedede] border-t-2',
+  logoutTxt: 'text-base font-semibold whitespace-nowrap text-custom-blue'
+}
+
 const TabSection = ({
   dashboardTabs,
   selectedTab,
@@ -22,25 +45,23 @@ const TabSection = ({
   handleLanguage
 }: TabData) => {
   return (
-    <section className='w-[248px] h-full absolute top-0 left-0 flex flex-col items-center pt-[30px] shrink-0'>
-      <div className='w-[55px] h-[55px] bg-[#0b8e00] rounded-full flex justify-center items-center relative'>
-        <p className='font-medium text-4xl text-[#ffffff] leading-[54px]'>D</p>
+    <section className={classes.tabContainer}>
+      <div className={classes.imgContainer}>
+        <p className={classes.nameText}>D</p>
         <img
           src='/src/assets/dashboard/img_edit.svg'
           alt='edit-icon'
-          className='absolute bottom-0 right-[-7px] cursor-pointer'
+          className={classes.logoImg}
         />
       </div>
-      <h2 className='mt-[5px] text-base font-medium text-custom-black'>Kang Dayeon</h2>
-      <p className='font-bold text-[#9d9d9d] text-xs leading-[18px] mt-[7px] mb-[31px]'>
-        dayeon@conun.io
-      </p>
+      <h2 className={classes.nameTitle}>Kang Dayeon</h2>
+      <p className={classes.email}>dayeon@conun.io</p>
 
-      <div className='flex flex-col w-full gap-0'>
+      <div className={classes.bottomDiv}>
         {dashboardTabs.map((item, index) => (
           <div>
             <div
-              className={`flex relative px-[19px] py-[23px] cursor-pointer gap-[15px] items-center ${
+              className={`${classes.tab} ${
                 selectedTab === index && selectedChild === null
                   ? 'bg-secondary-blue'
                   : ''
@@ -54,7 +75,7 @@ const TabSection = ({
                     : '#9d9d9d'
               })}
 
-              <div className='flex items-center gap-[3px] justify-center'>
+              <div className={classes.childTab}>
                 <p
                   className={`text-sm font-semibold ${
                     selectedTab === index && selectedChild === null
@@ -76,7 +97,7 @@ const TabSection = ({
               </div>
 
               {selectedTab === index && (
-                <div className='w-[4px] h-[13px] shrink-0 bg-custom-blue absolute left-0' />
+                <div className={classes.selectedIcon} />
               )}
             </div>
 
@@ -84,7 +105,7 @@ const TabSection = ({
               item.children &&
               item.children.map((child) => (
                 <div
-                  className={`py-[12px] pl-[58px] text-sm cursor-pointer font-semibold ${
+                  className={`${classes.childTxt} ${
                     selectedChild === child.childText
                       ? 'text-custom-blue bg-secondary-blue'
                       : 'text-custom-grey'
@@ -98,10 +119,10 @@ const TabSection = ({
         ))}
       </div>
 
-      <div className='absolute bottom-0 left-0 h-[134px] w-full flex flex-col items-center'>
-        <div className='flex px-[60px] gap-[8px] mb-[27px]'>
+      <div className={classes.bottomContainer}>
+        <div className={classes.langDiv}>
           <div
-            className={`flex items-center justify-center cursor-pointer py-4 font-bold  rounded-[10px] w-[60px] h-[34px] ${
+            className={`${classes.lang} ${
               selectedLanguage === 'ENG'
                 ? 'bg-secondary-blue text-custom-black'
                 : 'text-custom-grey'
@@ -112,7 +133,7 @@ const TabSection = ({
           </div>
 
           <div
-            className={`flex items-center justify-center cursor-pointer py-4 font-bold rounded-[10px] w-[60px] h-[34px] ${
+            className={`${classes.lang} ${
               selectedLanguage === 'KOR'
                 ? 'bg-secondary-blue text-custom-black'
                 : 'text-custom-grey'
@@ -122,10 +143,8 @@ const TabSection = ({
             KOR
           </div>
         </div>
-        <div className='flex w-full pl-[40px] pr-[30px] gap-[90px] pt-[23px] items-center justify-center border-[#dedede] border-t-2'>
-          <p className='text-base font-semibold whitespace-nowrap text-custom-blue'>
-            Log out
-          </p>
+        <div className={classes.logoutDiv}>
+          <p className={classes.logoutTxt}>Log out</p>
           <img
             src='/src/assets/dashboard/logout.svg'
             alt=''
