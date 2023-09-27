@@ -3,9 +3,9 @@ import RequestsLogo from '../../assets/dashboard/requests_logo.svg?react'
 import PasswordManagerLogo from '../../assets/dashboard/password_manager_logo.svg?react'
 import React from 'react'
 import { useState } from 'react'
-import TabSection from './TabSection'
-import Header from './Header'
-import MainContent from './MainContent'
+import TabSection from '../../components/TabSection'
+import MainContent from '../../components/MainContent'
+import Header from '../../components/Header'
 export interface DashboardChild {
   childText: string
 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import { DashboardTab } from '.'
 import DropdownLogo from '../../assets/dashboard/dropdown.svg?react'
+import { DashboardTab } from '../../pages/Dashboard'
 
 interface TabData {
   dashboardTabs: DashboardTab[]
