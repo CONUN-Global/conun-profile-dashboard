@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
+import withMT from '@material-tailwind/react/utils/withMT'
+export default withMT({
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -19,4 +20,5 @@ export default {
     extend: {}
   },
   plugins: []
-}
+})
+
