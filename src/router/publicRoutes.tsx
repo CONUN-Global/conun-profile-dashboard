@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import Layout from '../Layout'
 import Login from '../pages/Auth/Login'
-import Dashboard from '../pages/Dashboard'
+import Main from '../pages/Main'
 
 const publicRoutes = [
   {
@@ -13,9 +13,14 @@ const publicRoutes = [
         element: <Login />
       },
       {
-        path: '/dashboard',
-        element: <Dashboard />
-      },
+        path: '/main',
+        element: <Main />,
+        children: [
+          { path: 'dashboard', element: <Main /> },
+          { path: 'requests', element: <Main /> },
+          { path: 'password-manager', element: <Main /> }
+        ]
+      }
     ]
   },
   {
