@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import DropdownLogo from '../../assets/dashboard/dropdown.svg?react'
-import { DashboardTab } from '../../pages/Dashboard'
+import { MainTab } from '../../pages/Main'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 interface TabData {
-  dashboardTabs: DashboardTab[]
+  mainTabs: MainTab[]
   selectedTab: number | null
+  setSelectedTab: (num: number | null) => void
   selectedChild: string | null
-  handleParentClick: (index: number) => void
+  handleParentClick: (index: number, text: string) => void
   handleChildClick: (childText: string) => void
   selectedLanguage: string | null
   handleLanguage: (lang: string) => void
@@ -36,14 +38,24 @@ const classes = {
 }
 
 const TabSection = ({
-  dashboardTabs,
+  mainTabs,
   selectedTab,
+  setSelectedTab,
   selectedChild,
   handleParentClick,
   handleChildClick,
   selectedLanguage,
   handleLanguage
 }: TabData) => {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (pathname === '/main') navigate('/main/dashboard')
+    if (pathname === '/main/dashboard') setSelectedTab(0)
+    if (pathname === '/main/requests') setSelectedTab(1)
+    if (pathname === '/main/password-manager') setSelectedTab(2)
+  }, [pathname])
+
   return (
     <section className={classes.tabContainer}>
       <div className={classes.imgContainer}>
@@ -58,7 +70,7 @@ const TabSection = ({
       <p className={classes.email}>dayeon@conun.io</p>
 
       <div className={classes.bottomDiv}>
-        {dashboardTabs.map((item, index) => (
+        {mainTabs.map((item, index) => (
           <div>
             <div
               className={`${classes.tab} ${
@@ -66,7 +78,7 @@ const TabSection = ({
                   ? 'bg-secondary-blue'
                   : ''
               }`}
-              onClick={() => handleParentClick(index)}
+              onClick={() => handleParentClick(index, item.text)}
             >
               {React.cloneElement(item.Logo as React.ReactElement, {
                 fill:
@@ -107,7 +119,7 @@ const TabSection = ({
                 <div
                   className={`${classes.childTxt} ${
                     selectedChild === child.childText
-                      ? 'text-custom-blue bg-secondary-blue'
+                      ? 'bg-secondary-blue text-custom-blue'
                       : 'text-custom-grey'
                   }`}
                   onClick={() => handleChildClick(child.childText)}

@@ -6,16 +6,17 @@ import { useState } from 'react'
 import TabSection from '../../components/TabSection'
 import MainContent from '../../components/MainContent'
 import Header from '../../components/Header'
+import { useNavigate } from 'react-router-dom'
 export interface DashboardChild {
   childText: string
 }
-export interface DashboardTab {
+export interface MainTab {
   Logo: React.ReactNode
   text: string
   children?: DashboardChild[]
 }
 
-const dashboardTabs: DashboardTab[] = [
+const mainTabs: MainTab[] = [
   {
     Logo: <DashboardLogo />,
     text: 'Dashboard'
@@ -31,14 +32,22 @@ const dashboardTabs: DashboardTab[] = [
   }
 ]
 
-const Dashboard = () => {
-  const [selectedTab, setSelectedTab] = useState<number | null>(0)
+const Main = () => {
+  const [selectedTab, setSelectedTab] = useState<number | null>(null)
   const [selectedChild, setSelectedChild] = useState<string | null>(null)
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>('ENG')
+  const navigate = useNavigate()
 
-  const handleParentClick = (index: number) => {
+  const handleParentClick = (index: number, text: string) => {
     setSelectedTab(index)
     setSelectedChild(null)
+    if (text === 'Dashboard') {
+      navigate('/main/dashboard')
+    } else if (text === 'Requests') {
+      navigate('/main/requests')
+    } else if (text === 'Password Manager') {
+      navigate('/main/password-manager')
+    }
   }
 
   const handleChildClick = (childText: string) => {
@@ -48,8 +57,9 @@ const Dashboard = () => {
   const handleLanguage = (lang: string) => setSelectedLanguage(lang)
 
   const tabData = {
-    dashboardTabs,
+    mainTabs,
     selectedTab,
+    setSelectedTab,
     selectedChild,
     selectedLanguage,
     handleParentClick,
@@ -57,7 +67,7 @@ const Dashboard = () => {
     handleLanguage
   }
   return (
-    <div className='w-screen h-screen'>
+    <div className='h-screen w-screen'>
       <Header />
       <TabSection {...tabData} />
       <MainContent />
@@ -65,4 +75,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Main
