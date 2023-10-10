@@ -9,7 +9,8 @@ export default withMT({
         'custom-blue': '#0001AE',
         'custom-grey': '#9D9D9D',
         'secondary-blue': '#f4f6ff',
-        'custom-black': '#292929'
+        'custom-black': '#292929',
+        'light-grey': '#dedede'
       },
       fontFamily: {
         sans: ['Poppins', 'system-ui']
@@ -21,4 +22,3 @@ export default withMT({
   },
   plugins: []
 })
-

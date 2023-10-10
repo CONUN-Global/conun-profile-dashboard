@@ -1,7 +1,7 @@
 import { Card, Typography } from '@material-tailwind/react'
 import { TABLE_HEAD, TABLE_ROWS } from './demoData'
 
-export function MainTable() {
+export function DashboardTable() {
   return (
     <Card className='h-[600px] min-w-full  overflow-y-auto'>
       <table className='min-h-max  w-full table-auto text-left'>
