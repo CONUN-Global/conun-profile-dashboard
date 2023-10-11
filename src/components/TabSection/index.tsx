@@ -52,7 +52,7 @@ const TabSection = ({
   useEffect(() => {
     if (pathname === '/main') navigate('/main/dashboard')
     if (pathname === '/main/dashboard') setSelectedTab(0)
-    if (pathname === '/main/requests') setSelectedTab(1)
+    if (pathname.includes('requests')) setSelectedTab(1)
     if (pathname === '/main/password-manager') setSelectedTab(2)
   }, [pathname])
 
