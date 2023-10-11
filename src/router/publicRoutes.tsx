@@ -17,7 +17,15 @@ const publicRoutes = [
         element: <Main />,
         children: [
           { path: 'dashboard', element: <Main /> },
-          { path: 'requests', element: <Main /> },
+          {
+            path: 'requests',
+            element: <Main />,
+            children: [
+              { path: 'request-form', element: <Main /> },
+              { path: 'business-trip', element: <Main /> },
+              { path: 'payment-form', element: <Main /> }
+            ]
+          },
           { path: 'password-manager', element: <Main /> }
         ]
       }
