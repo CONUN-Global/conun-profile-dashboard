@@ -1,7 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { DashboardTable } from '../DashboardTable'
 import { Pagination } from '../Pagination'
-import { RequestTable } from '../RequestTable'
+import { RequestTable } from '../Requests/RequestTable'
+import RequestForm from '../Requests/RequestForm'
+import BusinessTrip from '../Requests/BusinessTrip'
+import PaymentForm from '../Requests/PaymentForm'
 
 const navTabs = [
   {
@@ -37,6 +40,7 @@ const MainContent = () => {
   const isRequestForm = pathname.includes('request-form')
   const isBusinessTrip = pathname.includes('business-trip')
   const isPaymentForm = pathname.includes('payment-form')
+  const isForm = isRequestForm || isBusinessTrip || isPaymentForm
 
   return (
     <div className={classes.mainDiv}>
@@ -52,30 +56,32 @@ const MainContent = () => {
 
       {isRequests && (
         <>
-          <nav className={classes.navDiv}>
-            <ul className={classes.navUl}>
-              {navTabs.map((tab) => (
-                <li className={classes.navLi}>
-                  <button
-                    className={`${classes.navBtn} ${
-                      location.pathname.includes(tab.to)
-                        ? 'text-custom-blue'
-                        : ''
-                    }`}
-                    onClick={() => navigate(tab.to)}
-                  >
-                    {tab.text}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {!isForm && (
+            <nav className={classes.navDiv}>
+              <ul className={classes.navUl}>
+                {navTabs.map((tab) => (
+                  <li className={classes.navLi}>
+                    <button
+                      className={`${classes.navBtn} ${
+                        location.pathname.includes(tab.to)
+                          ? 'text-custom-blue'
+                          : ''
+                      }`}
+                      onClick={() => navigate(tab.to)}
+                    >
+                      {tab.text}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
           {isRequestForm ? (
-            <div>request form</div>
+            <RequestForm />
           ) : isBusinessTrip ? (
-            <div>business trip</div>
+            <BusinessTrip />
           ) : isPaymentForm ? (
-            <div>payment form</div>
+            <PaymentForm />
           ) : (
             <>
               <h2 className={classes.mainTitle}>Your Requests </h2>
